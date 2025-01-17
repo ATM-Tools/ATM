@@ -163,32 +163,94 @@
 
     <!-- Common content -->
         <!-- Custom upload button -->
-		<div align="center">
-		<table border="0" style="margin-top:60px;"><tr>
-		<td><label for="activity-file-input" id="activity-upload-button" class="activity-upload-button">Upload File</label>
-        <input type="file" id="activity-file-input" accept=".xlsx, .xls" hidden> </td>
-		<td><button id="activity-download-button" onclick="activityDownloadTableAsExcel()">Download as Excel</button>
-</td></tr></table></div>
-   
+<!-- Custom upload button -->
+<div align="center">
+    <table border="0" style="margin-top:60px;">
+        <tr>
+            <td>
+                <label for="activity-file-input" id="activity-upload-button" class="activity-upload-button">Upload File</label>
+                <input type="file" id="activity-file-input" accept=".xlsx, .xls" hidden>
+            </td>
+            <td>
+                <button id="activity-download-button" onclick="activityDownloadTableAsExcel()">Download as Excel</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
-    <table id="activity-table">
-        <thead>
-            <tr>
-                <th class="activity-th">Date</th>
-                <th class="activity-th">Site Name</th>
-                <th class="activity-th">Ticket no</th>
-                <th class="activity-th">Ticket type</th>
-                <th class="activity-th">Last update</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table><br><br>
+<!-- Scrollable table container -->
+<div class="table-container">
+    <div class="table-wrapper">
+        <table id="activity-table">
+            <thead>
+                <tr>
+                    <th class="activity-th">Date</th>
+                    <th class="activity-th">Site Name</th>
+                    <th class="activity-th">Ticket no</th>
+                    <th class="activity-th">Ticket type</th>
+                    <th class="activity-th">Last update</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <!-- Footer Section (page end) -->
     <footer id="footer">&copy; 2024. All Rights Reserved.</footer>
   </div>
 <script>
+
+// Add this script to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function () {
+    const tableWrapper = document.querySelector('.table-wrapper');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Mouse events for desktop
+    tableWrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - tableWrapper.offsetLeft;
+        scrollLeft = tableWrapper.scrollLeft;
+    });
+
+    tableWrapper.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    tableWrapper.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    tableWrapper.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - tableWrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Adjust the multiplier for faster/slower scrolling
+        tableWrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch events for mobile
+    tableWrapper.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - tableWrapper.offsetLeft;
+        scrollLeft = tableWrapper.scrollLeft;
+    });
+
+    tableWrapper.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    tableWrapper.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - tableWrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Adjust the multiplier for faster/slower scrolling
+        tableWrapper.scrollLeft = scrollLeft - walk;
+    });
+});
         // Event listener for file input
         document.getElementById('activity-file-input').addEventListener('change', function(event) {
             const activityFile = event.target.files[0];
@@ -502,6 +564,49 @@
         .activity-upload-button.chosen::after {
             content: " ✔"; /* Add a checkmark symbol */
         }
+		/* Add these styles to your existing CSS */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#activity-table th,
+#activity-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    min-width: 150px; /* Adjust as needed */
+}
+
+#activity-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#activity-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#activity-table tr:hover {
+    background-color: #f1f1f1;
+}
   
 	/*style end practs*/`;
 
