@@ -207,7 +207,7 @@
 
         // Display data
         ocrOutputDiv.innerHTML = `
-<textarea>
+<textarea width="100%">
 Ticket Number:
  ${ocrExtractedData.ocrTicketNumber} 
 ATM Name:
@@ -215,7 +215,7 @@ ATM Name:
 Serial Number:
  ${ocrExtractedData.ocrSerialNumber}
 </textarea>
-<textarea>
+<textarea width="100%">
 All Extracted Text:
 ${ocrExtractedData.ocrFullText}
 </textarea>
@@ -286,7 +286,7 @@ ${ocrExtractedData.ocrFullText}
  /*ocr*/
          .ocr-container {
             margin-top: 60px;
-	    max-width: 250px;
+	    max-width: 300px;
             padding: 10px;
             background: #fff;
             border-radius: 8px;
