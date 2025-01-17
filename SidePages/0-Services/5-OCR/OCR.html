@@ -160,8 +160,16 @@
     <!-- Common content -->
     <div class="ocr-container">
       <h1>OCR Data Extraction</h1>
-      <input type="file" id="ocr-image-input" accept="image/*">
-      <button onclick="ocrExtractData()">Extract Data</button>
+	    <table>
+		    <tr>
+			    <td>
+				    <input type="file" id="ocr-image-input" accept="image/*">
+			    </td>
+			    <td>
+				    <button onclick="ocrExtractData()">Extract Data</button>
+			    </td>
+		    </tr>
+	    </table>
       <div id="ocr-output" class="ocr-output" hidden></div>
     </div>
     <!-- Footer Section (page end) -->
