@@ -160,10 +160,12 @@
     <!-- Top Navigation Panel End -->
 
     <!-- Common content --><br><br><br><br>
-	  <div align="center">				  <button id="show-form-button" style="padding: 10px 20px;      background-color: #28a745;      color: white;      border: none;      cursor: pointer;      border-radius: 5px;">Add New</button>
-</div>
-  <div id="task-form">
-	  <table width="80%">
+	  <div align="center">
+	  <button id="show-form-button" style="padding: 10px 20px;      background-color: #28a745;      color: white;      border: none;      cursor: pointer;      border-radius: 5px;">Add New</button>
+  <div align="center">
+
+<div id="task-form">
+	  <table border="0">
 		  <tr>
 			  <td>
 			    <input type="text" id="task-input" placeholder="Enter a task" required>
@@ -178,7 +180,8 @@
   
 			  </td>
 		  </tr>
-	  </table>
+	  </table></div></div>
+  <br>
   </div>
   <ul id="task-list"></ul>
     <!-- Footer Section (page end) -->
@@ -243,10 +246,7 @@
     #progress-bar { position: fixed; /* Sticks the canvas to the viewport */ top: 0; left: 0; width: 100%; /* Full width of the viewport */ height: 3px; /* Progress bar height */ background-color: #000; /* Background color of the bar */ }
   /*tasklist*/
   #task-form {
-      margin-bottom: 20px;
       display: none; /* Hide the form initially */
-      gap: 10px;
-      align-items: center;
     }
     #task-input, #details-input {
       padding: 10px;
@@ -545,7 +545,7 @@
     // Show the form when the "+" button is clicked
     document.getElementById('show-form-button').addEventListener('click', function () {
       const taskForm = document.getElementById('task-form');
-      taskForm.style.display = 'flex'; // Show the form
+      taskForm.style.display = 'block'; // Show the form
     });
 
     // Add task when the "Add Task" button is clicked
